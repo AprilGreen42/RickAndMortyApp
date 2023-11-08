@@ -10,7 +10,7 @@ import SwiftUI
 struct InfoAboutCharacter: View {
     
     @StateObject var character = APIManager()
-    var idCharacter: String = ""
+    var idCharacter: String = "1"
     
     var body: some View {
         NavigationStack {
@@ -35,13 +35,6 @@ struct InfoAboutCharacter: View {
                             .font(.system(size: 17))
                             .foregroundStyle(.white)
                     }
-                    Section {
-                        
-                    } header: {
-                        Text("Origin")
-                            .font(.system(size: 17))
-                            .foregroundStyle(.white)
-                    }
                 }
             }
         }
@@ -54,4 +47,5 @@ struct InfoAboutCharacter: View {
 
 #Preview {
     InfoAboutCharacter()
+        .preferredColorScheme(.dark)
 }

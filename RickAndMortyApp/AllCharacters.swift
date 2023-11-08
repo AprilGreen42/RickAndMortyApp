@@ -10,7 +10,6 @@ import SwiftUI
 struct AllCharacters: View {
     
     @StateObject var allCharacter = APIManager()
-    @State private var idForCharacter: Int = 0
     
     var body: some View {
             NavigationStack {
@@ -37,4 +36,5 @@ struct AllCharacters: View {
 
 #Preview {
     AllCharacters()
+        .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
 }

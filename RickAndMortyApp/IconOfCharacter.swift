@@ -10,7 +10,7 @@ import SwiftUI
 struct IconOfCharacter: View {
     
     @StateObject var character = APIManager()
-    var idCharacter: String = ""
+    var idCharacter: String = "1"
     
     var body: some View {
         ZStack {
@@ -23,7 +23,7 @@ struct IconOfCharacter: View {
                     AsyncImage(url: URL(string: "\(char.image)"))
                         .cornerRadius(16)
                     Text("\(char.name)")
-                        .font(.system(size: 17))
+                        .font(.system(size: 29))
                         .foregroundColor(.white)
                         .padding(.top, 10)
                     
@@ -39,4 +39,5 @@ struct IconOfCharacter: View {
 
 #Preview {
     IconOfCharacter()
+        .preferredColorScheme(.dark)
 }
