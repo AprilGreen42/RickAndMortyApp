@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct IconOfCharacter: View {
+    
+    @StateObject var character = APIManager()
+    var idCharacter: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Rectangle()
+                .frame(width: 350, height: 380)
+                .foregroundColor(Color("ColorOfCharacterCard"))
+                .cornerRadius(15)
+            VStack {
+                ForEach(character.character.results) { char in
+                    AsyncImage(url: URL(string: "\(char.image)"))
+                        .cornerRadius(16)
+                    Text("\(char.name)")
+                        .font(.system(size: 17))
+                        .foregroundColor(.white)
+                        .padding(.top, 10)
+                    
+                }
+            }
+        }
+        .onAppear {
+            character.fetchByID(meth: idCharacter)
+        }
+
     }
 }
 

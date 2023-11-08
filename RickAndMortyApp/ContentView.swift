@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isActive: Bool = true
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            if self.isActive {
+                LaunchScreen()
+            }
+            else {
+                AllCharacters()
+            }
+        }
+        .onAppear() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                withAnimation {
+                    self.isActive = false
+                }
+            }
+        }
     }
 }
 
 #Preview {
     ContentView()
+        .preferredColorScheme(.dark)
 }

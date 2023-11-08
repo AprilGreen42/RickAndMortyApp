@@ -8,8 +8,47 @@
 import SwiftUI
 
 struct InfoAboutCharacter: View {
+    
+    @StateObject var character = APIManager()
+    var idCharacter: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ForEach(character.character.results) { char in
+                AsyncImage(url: URL(string: "\(char.image)"), scale: 1.48)
+                    .cornerRadius(16)
+                Text(char.name)
+                    .font(.system(size: 22))
+                    .padding(.top, 10)
+                    .padding(.bottom, 10)
+                    .bold()
+                Text("\(char.status)")
+                    .font(.system(size: 16))
+                    .foregroundStyle(.green)
+                Form {
+                    Section {
+                        LabeledContent("Species:", value: char.species)
+                        LabeledContent("Type:", value: char.type)
+                        LabeledContent("Gender:", value: char.gender)
+                    } header: {
+                        Text("Info")
+                            .font(.system(size: 17))
+                            .foregroundStyle(.white)
+                    }
+                    Section {
+                        
+                    } header: {
+                        Text("Origin")
+                            .font(.system(size: 17))
+                            .foregroundStyle(.white)
+                    }
+                }
+            }
+        }
+        .toolbarRole(.editor)
+        .onAppear {
+            character.fetchByID(meth: idCharacter)
+        }
     }
 }
 
