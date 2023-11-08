@@ -8,17 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		114F51E02AFBB06A0099EC06 /* RickAndMortyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F51DF2AFBB06A0099EC06 /* RickAndMortyAppApp.swift */; };
-		114F51E22AFBB06A0099EC06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F51E12AFBB06A0099EC06 /* ContentView.swift */; };
 		114F51E42AFBB06B0099EC06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 114F51E32AFBB06B0099EC06 /* Assets.xcassets */; };
 		114F51E72AFBB06B0099EC06 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 114F51E62AFBB06B0099EC06 /* Preview Assets.xcassets */; };
+		114F51EE2AFBB4EC0099EC06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F51ED2AFBB4EC0099EC06 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		114F51DC2AFBB06A0099EC06 /* RickAndMortyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		114F51DF2AFBB06A0099EC06 /* RickAndMortyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyAppApp.swift; sourceTree = "<group>"; };
-		114F51E12AFBB06A0099EC06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		114F51E32AFBB06B0099EC06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		114F51E62AFBB06B0099EC06 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		114F51ED2AFBB4EC0099EC06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				114F51DF2AFBB06A0099EC06 /* RickAndMortyAppApp.swift */,
-				114F51E12AFBB06A0099EC06 /* ContentView.swift */,
+				114F51ED2AFBB4EC0099EC06 /* ContentView.swift */,
 				114F51E32AFBB06B0099EC06 /* Assets.xcassets */,
 				114F51E52AFBB06B0099EC06 /* Preview Content */,
 			);
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				114F51E22AFBB06A0099EC06 /* ContentView.swift in Sources */,
+				114F51EE2AFBB4EC0099EC06 /* ContentView.swift in Sources */,
 				114F51E02AFBB06A0099EC06 /* RickAndMortyAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
