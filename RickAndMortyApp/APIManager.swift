@@ -33,7 +33,15 @@ struct Location: Codable {
     var url: String
 }
 
+struct Info: Codable {
+    var count: Int = 826
+    var pages: Int = 42
+    var next: String? = "https://rickandmortyapi.com/api/character/?page=2"
+    var prev: String? = nil
+}
+
 struct Characters: Codable {
+    var info = Info()
     var results: [Character] = []
 }
 
@@ -41,7 +49,8 @@ struct Characters: Codable {
 class APIManager: ObservableObject {
     @Published var character: Characters = Characters()
     @Published var allCharacters: Characters = Characters()
-    let baseURL: String = "https://rickandmortyapi.com/api/character"
+    @Published var next20Characters: Characters = Characters()
+    let baseURL: String = "https://rickandmortyapi.com/api/character/?page=1"
     
     func fetchAllCharacters() {
         guard let url = URL(string: baseURL) else { return }
@@ -58,6 +67,24 @@ class APIManager: ObservableObject {
             }
         }
         task.resume()
+    }
+    func fetchNextPage() {
+        guard let nextPage = next20Characters.info.next else { return }
+        guard let url = URL(string: "\(nextPage)") else { return }
+        let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let responce = try JSONDecoder().decode(Characters.self, from: data)
+                DispatchQueue.main.async {
+                    self?.next20Characters = responce
+                }
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
+        self.allCharacters.results += self.next20Characters.results
     }
     
     func rem() {

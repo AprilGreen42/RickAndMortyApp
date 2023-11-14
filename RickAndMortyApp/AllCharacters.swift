@@ -12,25 +12,39 @@ struct AllCharacters: View {
     @StateObject var allCharacter = APIManager()
     
     var body: some View {
-            NavigationStack {
-                ScrollView(.vertical, showsIndicators: false) {
-                    ForEach(allCharacter.allCharacters.results) { char in
-                        NavigationLink(destination: {
-                            InfoAboutCharacter(idCharacter: "\(char.id)")
-                        }, label: {
-                            IconOfCharacter(idCharacter: "\(char.id)")
-                        })
-                    }
-                    .onAppear() {
-                        allCharacter.fetchAllCharacters()
-                    }
-                    .onDisappear() {
-                        allCharacter.rem()
-                    }
+        NavigationStack {
+            ScrollView(.vertical, showsIndicators: false) {
+                ForEach(allCharacter.allCharacters.results) { char in
+                    NavigationLink(destination: {
+                        InfoAboutCharacter(idCharacter: "\(char.id)")
+                    }, label: {
+                        IconOfCharacter(idCharacter: "\(char.id)")
+                    })
                 }
-                .navigationTitle("Charcters")
+                
+                Button(action: {
+                    allCharacter.fetchNextPage()
+                }, label: {
+                    Text("Show more")
+                        .font(.title)
+                })
+                .foregroundStyle(.white)
+                .frame(width: 200, height: 100)
+                .background(Color.blue)
+                .buttonStyle(.borderless)
+                .clipShape(.buttonBorder)
+                .padding(.top)
+                
+                .onAppear() {
+                    allCharacter.fetchAllCharacters()
+                }
+                .onDisappear() {
+                    allCharacter.rem()
+                }
             }
-            .ignoresSafeArea(.all)
+            .navigationTitle("Charcters")
+        }
+        .ignoresSafeArea(.all)
     }
 }
 

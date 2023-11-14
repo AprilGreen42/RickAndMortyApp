@@ -11,7 +11,6 @@ struct InfoAboutCharacter: View {
     
     @StateObject var character = APIManager()
     var idCharacter: String = "1"
-    
     var body: some View {
         NavigationStack {
             ForEach(character.character.results) { char in
