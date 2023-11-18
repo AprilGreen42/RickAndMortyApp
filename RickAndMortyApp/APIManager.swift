@@ -21,19 +21,19 @@ struct Character: Identifiable, Codable {
     var gender: String
     var origin: Origin
     var episode: [String]
+    
+    struct Origin: Codable {
+        var name: String
+        var url: String
+    }
+
+    struct Location: Codable {
+        var name: String
+        var url: String
+    }
 }
 
-struct Origin: Codable {
-    var name: String
-    var url: String
-}
-
-struct Location: Codable {
-    var name: String
-    var url: String
-}
-
-struct Info: Codable {
+struct InfoOfCharacter: Codable {
     var count: Int = 826
     var pages: Int = 42
     var next: String? = "https://rickandmortyapi.com/api/character/?page=2"
@@ -41,19 +41,58 @@ struct Info: Codable {
 }
 
 struct Characters: Codable {
-    var info = Info()
+    var info = InfoOfCharacter()
     var results: [Character] = []
 }
 
+struct Episode: Codable, Identifiable {
+    var id: Int
+    var name: String
+    var air_date: String
+    var episode: String
+    var characters: [String]
+    var url: String
+    var created: String
+}
+
+struct InfoOfEpisode: Codable {
+    var count: Int = 51
+    var pages: Int = 3
+    var next: String? = "https://rickandmortyapi.com/api/episode?page=2"
+    var prev: String? = nil
+}
+
+struct Episodes: Codable {
+    var info = InfoOfEpisode()
+    var results: [Episode] = []
+}
 
 class APIManager: ObservableObject {
     @Published var character: Characters = Characters()
     @Published var allCharacters: Characters = Characters()
     @Published var next20Characters: Characters = Characters()
-    let baseURL: String = "https://rickandmortyapi.com/api/character/?page=1"
+    @Published var episode: Episodes = Episodes()
+    
+    func fetchEpisode() {
+        guard let url = URL(string: "https://rickandmortyapi.com/api/episode") else { return }
+        let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let responce = try JSONDecoder().decode(Episodes.self, from: data)
+                DispatchQueue.main.async {
+                    self?.episode = responce
+                }
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
+    }
+    
     
     func fetchAllCharacters() {
-        guard let url = URL(string: baseURL) else { return }
+        guard let url = URL(string: "https://rickandmortyapi.com/api/character/?page=1") else { return }
         let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
             guard let data = data, error == nil else { return }
             
@@ -98,9 +137,9 @@ class APIManager: ObservableObject {
             guard let data = data, error == nil else { return }
             
             do {
-                let resp = try JSONDecoder().decode(Character.self, from: data)
+                let responce = try JSONDecoder().decode(Character.self, from: data)
                 DispatchQueue.main.async {
-                    self?.character.results.append(resp)
+                    self?.character.results.append(responce)
                 }
             } catch {
                 print(error)

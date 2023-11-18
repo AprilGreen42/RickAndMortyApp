@@ -10,7 +10,6 @@ import SwiftUI
 struct AllCharacters: View {
     
     @StateObject var allCharacter = APIManager()
-    
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
@@ -28,12 +27,12 @@ struct AllCharacters: View {
                     Text("Show more")
                         .font(.title)
                 })
-                .foregroundStyle(.white)
-                .frame(width: 200, height: 100)
-                .background(Color.blue)
-                .buttonStyle(.borderless)
-                .clipShape(.buttonBorder)
-                .padding(.top)
+                    .foregroundStyle(.white)
+                    .frame(width: 200, height: 100)
+                    .background(Color.blue)
+                    .buttonStyle(.borderless)
+                    .clipShape(.buttonBorder)
+                    .padding(.top)
                 
                 .onAppear() {
                     allCharacter.fetchAllCharacters()
@@ -43,9 +42,11 @@ struct AllCharacters: View {
                 }
             }
             .navigationTitle("Charcters")
+            .padding(.top)
         }
         .ignoresSafeArea(.all)
     }
+
 }
 
 #Preview {

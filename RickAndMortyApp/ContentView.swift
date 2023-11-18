@@ -15,7 +15,7 @@ struct ContentView: View {
                 LaunchScreen()
             }
             else {
-                AllCharacters()
+                TabViewView()
             }
         }
         .onAppear() {
