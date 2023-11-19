@@ -9,18 +9,18 @@ import SwiftUI
 
 struct AllCharacters: View {
     
-    @StateObject var allCharacter = APIManager()
+    @StateObject var allCharacter = APIManagerForCharacter()
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach(allCharacter.allCharacters.results) { char in
                     NavigationLink(destination: {
-                        InfoAboutCharacter(idCharacter: "\(char.id)")
+                        InfoAboutCharacter(character: char)
                     }, label: {
-                        IconOfCharacter(idCharacter: "\(char.id)")
+                        IconOfCharacter(character: char)
                     })
                 }
-                
+
                 Button(action: {
                     allCharacter.fetchNextPage()
                 }, label: {
@@ -35,14 +35,14 @@ struct AllCharacters: View {
                     .padding(.top)
                 
                 .onAppear() {
-                    allCharacter.fetchAllCharacters()
-                }
-                .onDisappear() {
-                    allCharacter.rem()
+                    allCharacter.fetchNextPage()
                 }
             }
             .navigationTitle("Charcters")
             .padding(.top)
+        }
+        .onAppear() {
+            allCharacter.fetchAllCharacters()
         }
         .ignoresSafeArea(.all)
     }

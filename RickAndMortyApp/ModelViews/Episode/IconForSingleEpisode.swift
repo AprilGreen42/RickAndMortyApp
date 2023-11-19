@@ -15,16 +15,23 @@ struct IconForSingleEpisode: View {
                 .frame(width: 370, height: 100)
                 .foregroundColor(Color("ColorOfCharacterCard"))
                 .cornerRadius(15)
-            VStack {
+            HStack {
                 Text("\(icon.name)")
                     .font(.system(size: 29))
                     .foregroundColor(.white)
-                    .padding(.top, 10)
+                    .padding(.horizontal, 25)
+                Spacer()
+                Text(icon.episode)
+                    .font(.system(size: 18))
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 25)
+
             }
         }
     }
 }
 
-//#Preview {
-//    IconForSingleEpisode()
-//}
+#Preview {
+    AllEpisodes()
+        .preferredColorScheme(.dark)
+}
