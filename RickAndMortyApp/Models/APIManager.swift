@@ -91,3 +91,44 @@ class APIManagerForCharacter: ObservableObject {
     }
 }
 
+
+class APIManagerForLocation: ObservableObject {
+    @Published var allLocation: Locations = Locations()
+    @Published var next20Locations: Locations = Locations()
+    
+    func fetchLocations() {
+        guard let url = URL(string: "https://rickandmortyapi.com/api/location") else { return }
+        let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let responce = try JSONDecoder().decode(Locations.self, from: data)
+                DispatchQueue.main.async {
+                    self?.allLocation = responce
+                }
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
+    }
+    
+    func fetchNextLocations() {
+        guard let nextPage = next20Locations.info.next else { return }
+        guard let url = URL(string: "\(nextPage)") else { return }
+        let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let responce = try JSONDecoder().decode(Locations.self, from: data)
+                DispatchQueue.main.async {
+                    self?.next20Locations = responce
+                }
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
+        self.allLocation.results += self.next20Locations.results
+    }
+}

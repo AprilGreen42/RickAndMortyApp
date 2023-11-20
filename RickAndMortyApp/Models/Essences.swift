@@ -68,3 +68,26 @@ struct Episodes: Codable {
     var results: [Episode] = []
 }
 
+
+
+struct Location: Identifiable, Codable {
+    var id: Int
+    var name: String
+    var type: String
+    var dimension: String
+    var residents: [String]
+    var url: String
+    var created: String
+}
+
+struct InfoOfLocation: Codable {
+    var count: Int = 126
+    var pages: Int = 7
+    var next: String? = "https://rickandmortyapi.com/api/location?page=2"
+    var prev: String? = nil
+}
+
+struct Locations: Codable {
+    var info = InfoOfLocation()
+    var results: [Location] = []
+}
