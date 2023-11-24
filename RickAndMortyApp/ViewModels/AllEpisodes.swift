@@ -15,9 +15,9 @@ struct AllEpisodes: View {
                 ForEach(episode.episode.results) { epis in
                     NavigationLink (
                         destination:
-                                    SingleEpisode(episode: epis), 
+                            SingleEpisode(episode: epis), 
                         label: {
-                                    IconForSingleEpisode(icon: epis)
+                            IconForSingleEpisode(icon: epis)
                     })
                 }
                 Button(action: {

@@ -10,7 +10,7 @@ import SwiftUI
 class APIManagerForEpisode: ObservableObject {
     @Published var episode: Episodes = Episodes()
     @Published var nextEpisodes: Episodes = Episodes()
-    
+
     func fetchEpisode() {
         guard let url = URL(string: "https://rickandmortyapi.com/api/episode") else { return }
         let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in

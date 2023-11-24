@@ -73,24 +73,26 @@
 				114F51ED2AFBB4EC0099EC06 /* ContentView.swift */,
 				114F51EF2AFBBA680099EC06 /* LaunchScreen.swift */,
 				11E5CC782B091EA70016B446 /* TabViewView.swift */,
+				112B640B2B098151006FC379 /* Episode */,
+				112B640A2B098148006FC379 /* Location */,
+				112B64092B09813A006FC379 /* Character */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		112B64082B097BF2006FC379 /* ModelViews */ = {
+		112B64082B097BF2006FC379 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				112B64092B09813A006FC379 /* Character */,
-				112B640B2B098151006FC379 /* Episode */,
-				112B640A2B098148006FC379 /* Location */,
+				114F51F12AFBBAE50099EC06 /* AllCharacters.swift */,
+				11E5CC7C2B09206E0016B446 /* AllEpisodes.swift */,
+				11E5CC7A2B091FAB0016B446 /* AllLocations.swift */,
 			);
-			path = ModelViews;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		112B64092B09813A006FC379 /* Character */ = {
 			isa = PBXGroup;
 			children = (
-				114F51F12AFBBAE50099EC06 /* AllCharacters.swift */,
 				114F51F52AFBBB020099EC06 /* AllInfoAboutCharacter.swift */,
 				114F51F32AFBBAF40099EC06 /* IconOfCharacter.swift */,
 			);
@@ -100,9 +102,8 @@
 		112B640A2B098148006FC379 /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				11E5CC7A2B091FAB0016B446 /* AllLocations.swift */,
-				11A074192B0C0A9900EB02F3 /* IconForLocationLink.swift */,
 				11A0741B2B0C0AAA00EB02F3 /* SingleLocation.swift */,
+				11A074192B0C0A9900EB02F3 /* IconForLocationLink.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -110,7 +111,6 @@
 		112B640B2B098151006FC379 /* Episode */ = {
 			isa = PBXGroup;
 			children = (
-				11E5CC7C2B09206E0016B446 /* AllEpisodes.swift */,
 				112B64002B09500F006FC379 /* SingleEpisode.swift */,
 				112B64022B095339006FC379 /* IconForSingleEpisode.swift */,
 			);
@@ -138,7 +138,7 @@
 			children = (
 				114F51DF2AFBB06A0099EC06 /* RickAndMortyAppApp.swift */,
 				112B64072B097BD9006FC379 /* Views */,
-				112B64082B097BF2006FC379 /* ModelViews */,
+				112B64082B097BF2006FC379 /* ViewModels */,
 				112B64062B097BC7006FC379 /* Models */,
 				114F51E32AFBB06B0099EC06 /* Assets.xcassets */,
 				114F51E52AFBB06B0099EC06 /* Preview Content */,
