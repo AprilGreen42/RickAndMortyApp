@@ -10,6 +10,8 @@ import SwiftUI
 struct IconForSingleEpisode: View {
     var icon: Episode
     var body: some View {
+        
+        //MARK: Icon for single episode
         ZStack {
             Rectangle()
                 .frame(width: 370, height: 100)

@@ -7,10 +7,12 @@
 
 import SwiftUI
 
+//MARK: API for episode
 class APIManagerForEpisode: ObservableObject {
     @Published var episode: Episodes = Episodes()
     @Published var nextEpisodes: Episodes = Episodes()
 
+    //MARK: Function for get episode
     func fetchEpisode() {
         guard let url = URL(string: "https://rickandmortyapi.com/api/episode") else { return }
         let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
@@ -28,8 +30,9 @@ class APIManagerForEpisode: ObservableObject {
         task.resume()
     }
     
+    //MARK: Function for get episodes at next page
     func fetchNextPage() {
-        guard let nextPage = nextEpisodes.info.next else { return }
+        guard let nextPage = (nextEpisodes.info.next ?? nextEpisodes.info.prev) else { return }
         guard let url = URL(string: "\(nextPage)") else { return }
         let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
             guard let data = data, error == nil else { return }
@@ -54,7 +57,7 @@ class APIManagerForCharacter: ObservableObject {
     @Published var allCharacters: Characters = Characters()
     @Published var next20Characters: Characters = Characters()
     
-    
+    //MARK: Function for get character
     func fetchAllCharacters() {
         guard let url = URL(string: "https://rickandmortyapi.com/api/character") else { return }
         let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
@@ -71,6 +74,8 @@ class APIManagerForCharacter: ObservableObject {
         }
         task.resume()
     }
+    
+    //MARK: Function for get characters at next page
     func fetchNextPage() {
         guard let nextPage = next20Characters.info.next else { return }
         guard let url = URL(string: "\(nextPage)") else { return }
@@ -96,6 +101,7 @@ class APIManagerForLocation: ObservableObject {
     @Published var allLocation: Locations = Locations()
     @Published var next20Locations: Locations = Locations()
     
+    //MARK: Function for get location
     func fetchLocations() {
         guard let url = URL(string: "https://rickandmortyapi.com/api/location") else { return }
         let task = URLSession.shared.dataTask(with: url) {[weak self] data, _, error in
@@ -113,6 +119,7 @@ class APIManagerForLocation: ObservableObject {
         task.resume()
     }
     
+    //MARK: Function for get locations at next page
     func fetchNextLocations() {
         guard let nextPage = next20Locations.info.next else { return }
         guard let url = URL(string: "\(nextPage)") else { return }

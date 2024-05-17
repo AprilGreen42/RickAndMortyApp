@@ -11,10 +11,16 @@ struct SingleLocation: View {
     @State private var isLoading: Bool = true
     var location: Location
     var body: some View {
+        
+        //MARK: Get api and build view
         ZStack {
+            
+            //MARK: Progress view for smooth loading
             if self.isLoading {
                 ProgressView()
             } else {
+                
+                //MARK: Building location view
                 NavigationStack {
                     Form {
                         Section(content: {
@@ -22,14 +28,12 @@ struct SingleLocation: View {
                         }, header: {
                             Text("Type")
                                 .font(.system(size: 17))
-                                .foregroundStyle(.white)
                         })
                         Section(content: {
                             Text(location.dimension)
                         }, header: {
                             Text("Dimension")
                                 .font(.system(size: 17))
-                                .foregroundStyle(.white)
                         })
                     }
                     .navigationTitle("\(location.name)")
@@ -48,5 +52,4 @@ struct SingleLocation: View {
 
 #Preview {
     AllLocations()
-        .preferredColorScheme(.dark)
 }

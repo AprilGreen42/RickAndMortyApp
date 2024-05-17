@@ -13,6 +13,8 @@ struct AllLocations: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach(locations.allLocation.results) { loc in
+                    
+                    //MARK: Icon and link for locations
                     NavigationLink(destination: {
                         SingleLocation(location: loc)
                     }, label: {
@@ -20,6 +22,7 @@ struct AllLocations: View {
                     })
                 }
                 
+                //MARK: Button for call another page locations
                 Button(action: {
                     locations.fetchNextLocations()
                 }, label: {
@@ -34,12 +37,16 @@ struct AllLocations: View {
                 .padding(.top)
                 
                 .onAppear() {
+                    
+                    //MARK: Call API next page
                     locations.fetchNextLocations()
                 }
             }
             .navigationTitle("Locations")
         }
         .onAppear() {
+            
+            //MARK: Call API first page
             locations.fetchLocations()
         }
     }

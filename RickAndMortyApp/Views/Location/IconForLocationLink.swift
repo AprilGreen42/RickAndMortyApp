@@ -10,6 +10,8 @@ import SwiftUI
 struct IconForLocationLink: View {
     var location: Location
     var body: some View {
+        
+        //MARK: Icon for single location
         ZStack {
             Rectangle()
                 .frame(width: 370, height: 100)

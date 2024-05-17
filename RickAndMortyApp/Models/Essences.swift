@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//MARK: Essences for character
 struct Character: Identifiable, Codable {
     var id: Int
     var name: String
@@ -45,7 +46,7 @@ struct Characters: Codable {
 }
 
 
-
+//MARK: Essences for episode
 struct Episode: Codable, Identifiable {
     var id: Int
     var name: String
@@ -69,7 +70,7 @@ struct Episodes: Codable {
 }
 
 
-
+//MARK: Essences for location
 struct Location: Identifiable, Codable {
     var id: Int
     var name: String

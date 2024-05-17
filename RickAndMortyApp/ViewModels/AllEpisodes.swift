@@ -12,6 +12,8 @@ struct AllEpisodes: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators:false) {
+                
+                //MARK: Icon and link for episodes
                 ForEach(episode.episode.results) { epis in
                     NavigationLink (
                         destination:
@@ -20,6 +22,8 @@ struct AllEpisodes: View {
                             IconForSingleEpisode(icon: epis)
                     })
                 }
+                
+                //MARK: Button for call another page episodes
                 Button(action: {
                     episode.fetchNextPage()
                 }, label: {
@@ -33,13 +37,15 @@ struct AllEpisodes: View {
                 .clipShape(.buttonBorder)
                 .padding(.top)
                 
-                .onAppear() {
-                    episode.fetchNextPage()
-                }
+//                .onAppear() {
+//                    episode.fetchEpisode()
+//                }
             }
             .navigationTitle("Episodes")
         }
         .onAppear {
+            
+            //MARK: Call API first page
             episode.fetchEpisode()
         }
     }

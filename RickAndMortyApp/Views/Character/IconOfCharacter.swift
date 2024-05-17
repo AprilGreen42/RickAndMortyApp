@@ -12,6 +12,8 @@ struct IconOfCharacter: View {
     var character: Character
     
     var body: some View {
+        
+        //MARK: Icon for single character
         ZStack {
             Rectangle()
                 .frame(width: 350, height: 380)

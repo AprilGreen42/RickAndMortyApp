@@ -11,6 +11,8 @@ struct ContentView: View {
     @State private var isActive: Bool = true
     var body: some View {
         ZStack {
+            
+            //MARK: Call launch screen, then call main view
             if self.isActive {
                 LaunchScreen()
             }

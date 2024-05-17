@@ -11,11 +11,17 @@ struct SingleEpisode: View {
     var episode: Episode
     @State private var isLoading: Bool = true
     var body: some View {
+        
+        //MARK: Get api and build view
         ZStack {
+            
+            //MARK: Progress view for smooth loading
             if isLoading {
                 ProgressView()
             }
             else {
+                
+                //MARK: Building episode view
                 NavigationStack {
                     Form {
                         Section(content: {
@@ -23,21 +29,18 @@ struct SingleEpisode: View {
                         }, header: {
                             Text("Air date")
                                 .font(.system(size: 17))
-                                .foregroundStyle(.white)
                         })
                         Section(content: {
                             Text(episode.episode)
                         }, header: {
                             Text("Episode")
                                 .font(.system(size: 17))
-                                .foregroundStyle(.white)
                         })
                         Section(content: {
                             Text(episode.created)
                         }, header: {
                             Text("Created")
                                 .font(.system(size: 17))
-                                .foregroundStyle(.white)
                         })
                     }
                     .navigationTitle("\(episode.name)")
